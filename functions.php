@@ -38,6 +38,8 @@ function showIdRooms() {
 }
 
 function newUser() {
+  if(isset($_POST['submit']))
+  {
     global $connection;
     $imie = $_POST['imie'];
     $pass = $_POST['pass'];
@@ -46,8 +48,6 @@ function newUser() {
     if (!$connection) {
       die ("Brak połączenia");
     };
-
-    //komendy
 
     $query = "INSERT INTO users(name,pass,pok) VALUES('$imie', '$pass', '$pok')";
 
@@ -58,9 +58,11 @@ function newUser() {
       echo '<script type="text/javascript">alert("Brak hasła lub użytkownika");</script>';
       die ();
     };
+  }
 }
 
 function przypiszUser() {
+  if(isset($_POST['submit'])){
     global $connection;
     $imie = $_POST['imie'];
     $pass = $_POST['pass'];
@@ -75,4 +77,5 @@ function przypiszUser() {
     {
       die ("Failed" . mysqli_error($connection));
     }
+  }
 }
